@@ -20,7 +20,7 @@ uint8_t addr  = 0x40;
 int menuPage;
 int zeroHeight = 0;
 int zeroLength = 0;
-float manHeight = 0;
+float manHeight = 0;  //Manual starting Height Variable
 float manThick = 0;
 float manLength = 0;
 float autoHeight = 0;
@@ -31,8 +31,11 @@ float kerfThick = 0;
 float feedSpeed = 0;
 float pauseLength = 0;
 
-char manualHeightNumber = 0;
-char manualHeight[6];
+
+//Spot for Manual array
+
+
+
 
 //LCD:hardware SPI  CTP:hardware IIC
 //Arduino mega2560 +ER-AS8875+ER-TFTM050A2-3
@@ -5090,21 +5093,71 @@ void handleMenuPage5(int x, int y)  {
 void handleMenuPage6(int x, int y)  {
   if (x > 0 && x < 200 && y > 0 && y < 120) {
     Serial.println("1 Pressed");
-    manualHeight[manualHeightNumber] = 1;
-    manualHeightNumber++;
     delay(100);
     drawInchesKeypad();
     delay(100);
   }
   if (x > 200 && x < 400 && y > 0 && y < 120) {
     Serial.println("2 Pressed");
-    manualHeight[manualHeightNumber] = 2;
-    manualHeightNumber++;
     delay(100);
     drawInchesKeypad();
     delay(100);
   }
-
+  if (x > 400 && x < 600 && y > 0 && y < 120) {
+    Serial.println("3 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 0 && x < 200 && y > 120 && y < 240) {
+    Serial.println("4 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 200 && x < 400 && y > 120 && y < 240) {
+    Serial.println("5 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 400 && x < 600 && y > 120 && y < 240) {
+    Serial.println("6 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 0 && x < 200 && y > 240 && y < 360) {
+    Serial.println("7 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 200 && x < 400 && y > 240 && y < 360) {
+    Serial.println("8 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 400 && x < 600 && y > 240 && y < 360) {
+    Serial.println("9 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 0 && x < 200 && y > 320 && y < 480) {
+    Serial.println(". Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  if (x > 200 && x < 400 && y > 320 && y < 480) {
+    Serial.println("0 Pressed");
+    delay(100);
+    drawInchesKeypad();
+    delay(100);
+  }
+  
   
   if (x > 400 && x < 600 && y > 320 && y < 480) {
     Serial.println("Done Pressed");
