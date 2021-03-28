@@ -556,7 +556,7 @@ void handleMenuPage6(int x, int y) {
 	}
 	if (x > 600 && x < 800 && y > 320 && y < 480) {
 		Serial.println("Back Pressed");
-		manHeightString.remove(manHeightString.length() - 1);
+		manHeightString = ""; // reset string
 		tft.fillRect(600, 360, 200, 120, RA8875_GREEN);
 		tft.drawRect(600, 360, 200, 120, RA8875_WHITE);
 		tft.textSetCursor(670, 405);
