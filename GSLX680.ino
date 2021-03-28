@@ -24,28 +24,10 @@ __asm__ __volatile__( \
 tmp; \
 })
 
-struct _ts_event {
-	uint16_t x1;
-	uint16_t y1;
-	uint16_t x2;
-	uint16_t y2;
-	uint16_t x3;
-	uint16_t y3;
-	uint16_t x4;
-	uint16_t y4;
-	uint16_t x5;
-	uint16_t y5;
-	uint8_t fingers;
-};
-
-#define GSL1680_WAKE 6
-#define GSL1680_INT   7
-
-struct _ts_event ts_event;
-
 extern const struct fw_data GSLX680_FW[] PROGMEM;
 extern const uint16_t sizeof_GSLX680_fw;
 extern Adafruit_RA8875 tft;
+struct _ts_event ts_event;
 
 static void GSLX680_I2C_Write(uint8_t regAddr, uint8_t *val, uint16_t cnt);
 uint8_t GSLX680_I2C_Read(uint8_t regAddr, uint8_t *pBuf, uint8_t len);
@@ -54,6 +36,29 @@ static void _GSLX680_reset_chip(void);
 static void _GSLX680_load_fw(void);
 static void _GSLX680_startup_chip(void);
 static void check_mem_data(void);
+
+void GSLX680_setup() {
+	pinMode(GSL1680_INT, INPUT);
+	pinMode(GSL1680_WAKE, OUTPUT);
+	digitalWrite(GSL1680_WAKE, HIGH);
+	delay(20);
+	digitalWrite(GSL1680_WAKE, LOW);
+	delay(20);
+	digitalWrite(GSL1680_WAKE, HIGH);
+	delay(20);
+
+	Serial.println("clr reg");
+	_GSLX680_clr_reg();
+	Serial.println("reset_chip");
+	_GSLX680_reset_chip();
+	Serial.println("load_fw");
+	_GSLX680_load_fw();
+	Serial.println("startup_chip");
+	_GSLX680_startup_chip();
+	delay(50);
+	check_mem_data();
+	delay(100);
+}
 
 //GSLX680_I2C_Write
 static void GSLX680_I2C_Write(uint8_t regAddr, uint8_t *val, uint16_t cnt) {
