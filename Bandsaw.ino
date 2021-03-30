@@ -262,7 +262,7 @@ void handleMenuPage3(int x, int y) {
 		tft.print("Starting Height");
 		delay(100);
 		menuPage = 6;
-		drawInchesKeypad();
+		drawInchesKeypad("");
 		delay(100);
 	}
 	if (x > 0 && x < 267 && y > 160 && y < 320) {
@@ -275,7 +275,7 @@ void handleMenuPage3(int x, int y) {
 		tft.print("Board Thickness");
 		delay(100);
 		menuPage = 7;
-		drawInchesKeypad();
+		drawInchesKeypad("");
 		delay(100);
 	}
 	if (x > 0 && x < 267 && y > 320 && y < 480) {
@@ -331,7 +331,7 @@ void handleMenuPage4(int x, int y) {
 		tft.print("Starting Height");
 		delay(100);
 		menuPage = 10;
-		drawInchesKeypad();
+		drawInchesKeypad("");
 		delay(100);
 	}
 	if (x > 0 && x < 267 && y > 160 && y < 320) {
@@ -344,7 +344,7 @@ void handleMenuPage4(int x, int y) {
 		tft.print("Board Thickness");
 		delay(100);
 		menuPage = 11;
-		drawInchesKeypad();
+		drawInchesKeypad("");
 		delay(100);
 	}
 	if (x > 0 && x < 267 && y > 320 && y < 480) {
@@ -413,7 +413,7 @@ void handleMenuPage5(int x, int y) {
 		tft.print("Kerf Thickness");
 		delay(100);
 		menuPage = 15;
-		drawInchesKeypad();
+		drawInchesKeypad("");
 		delay(100);
 	}
 	if (x > 0 && x < 267 && y > 160 && y < 320) {
@@ -464,77 +464,77 @@ void handleMenuPage6(int x, int y) {
 		Serial.println("1 Pressed");
 		manHeightString.concat('1');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 200 && x < 400 && y > 0 && y < 120) {
 		Serial.println("2 Pressed");
 		manHeightString.concat('2');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 400 && x < 600 && y > 0 && y < 120) {
 		Serial.println("3 Pressed");
 		manHeightString.concat('3');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 0 && x < 200 && y > 120 && y < 240) {
 		Serial.println("4 Pressed");
 		manHeightString.concat('4');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 200 && x < 400 && y > 120 && y < 240) {
 		Serial.println("5 Pressed");
 		manHeightString.concat('5');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 400 && x < 600 && y > 120 && y < 240) {
 		Serial.println("6 Pressed");
 		manHeightString.concat('6');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 0 && x < 200 && y > 240 && y < 360) {
 		Serial.println("7 Pressed");
 		manHeightString.concat('7');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 200 && x < 400 && y > 240 && y < 360) {
 		Serial.println("8 Pressed");
 		manHeightString.concat('8');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 400 && x < 600 && y > 240 && y < 360) {
 		Serial.println("9 Pressed");
 		manHeightString.concat('9');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 0 && x < 200 && y > 320 && y < 480) {
 		Serial.println(". Pressed");
 		manHeightString.concat('.');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 	if (x > 200 && x < 400 && y > 320 && y < 480) {
 		Serial.println("0 Pressed");
 		manHeightString.concat('0');
 		delay(100);
-		drawInchesKeypad();
+		drawInchesKeypad(manHeightString);
 		delay(100);
 	}
 
@@ -1258,7 +1258,7 @@ void drawQuantityError() {
 	tft.print("Back");
 }
 
-void drawInchesKeypad() {
+void drawInchesKeypad(String manHeightString) {
 	tft.fillScreen(RA8875_BLACK);
 
 	tft.fillRect(0, 0, 200, 120, RA8875_BLUE);
@@ -1282,7 +1282,12 @@ void drawInchesKeypad() {
 	tft.textEnlarge(2);
 	tft.print("3");
 
+	tft.fillRect(600, 0, 200, 120, RA8875_BLUE);
 	tft.drawRect(600, 0, 200, 120, RA8875_WHITE);
+	tft.textSetCursor(670, 35);
+	tft.textTransparent(RA8875_WHITE);
+	tft.textEnlarge(2);
+	tft.print(manHeightString.c_str());
 
 	tft.fillRect(0, 120, 200, 120, RA8875_BLUE);
 	tft.drawRect(0, 120, 200, 120, RA8875_WHITE);
